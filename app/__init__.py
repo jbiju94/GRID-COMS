@@ -20,5 +20,8 @@ def create_app():
     """
     Fire Services 
     """
+    @app.route("/")
+    def hello():
+        return "hello"
 
     return app
