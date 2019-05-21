@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, abort, Response, jsonify
+from flask import Blueprint, render_template, request, Response, jsonify
 import os
 from app.telegram.telegram_bot import TelegramBot
 
@@ -12,10 +12,11 @@ def def_resp():
 
 
 @telegram.route('/setWebhook', methods=['GET'])
-def set_webhook(webhook_url):
+def set_webhook():
     bot = TelegramBot(bot_token=os.environ['TELEGRAM_API'])
+    url = request.args.get('url')
     try:
-        bot.set_webhook(webhook_url)
+        bot.set_webhook(url)
         return Response("OK", status=200)
     except Exception as e:
         return Response(str(e), status=200)
