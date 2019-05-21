@@ -10,7 +10,7 @@ def create_app():
     """
     # load default configuration
     # app.config.from_object('project.settings')
-    app.config.from_pyfile('..\config.py')
+    #app.config.from_pyfile('..\config.py')
 
     """
     Blueprint Registration
