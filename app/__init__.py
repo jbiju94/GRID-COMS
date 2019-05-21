@@ -1,7 +1,7 @@
 from flask import Flask
 
 
-def create_app(config_filename):
+def create_app():
     from app.telegram import telegram
 
     app = Flask(__name__)
@@ -10,7 +10,7 @@ def create_app(config_filename):
     """
     # load default configuration
     # app.config.from_object('project.settings')
-    app.config.from_pyfile(config_filename)
+    app.config.from_pyfile('..\config.py')
 
     """
     Blueprint Registration
