@@ -1,5 +1,6 @@
 from flask import Blueprint, request, Response, jsonify
 import os
+import json
 from app.telegram.telegram_bot import TelegramBot
 from app.telegram.utils import parse_message
 from app.message_broker import get_message_broker_producer, get_message_broker_topic
@@ -32,7 +33,7 @@ def notify_new_message():
 
     # Push is to Queue
     producer = get_message_broker_producer()
-    producer.produce(get_message_broker_topic(), message)
+    producer.produce(get_message_broker_topic(), json.dumps(message))
     producer.flush()
 
     return Response("OK", status=200)

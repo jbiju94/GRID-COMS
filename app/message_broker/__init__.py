@@ -18,4 +18,4 @@ def get_message_broker_producer():
 
 
 def get_message_broker_topic():
-    return "%s.test" % os.environ['CLOUDKARAFKA_TOPIC_PREFIX']
+    return os.environ['CLOUDKARAFKA_TOPIC_PREFIX'] + "notification"
