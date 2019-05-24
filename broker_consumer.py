@@ -10,14 +10,10 @@ from app.telegram.telegram_bot import TelegramBot
 
 
 if __name__ == '__main__':
-
-    def close_consumer(consumer):
-        consumer.close()
-
     topics = [get_message_broker_topic()]
     c = get_message_broker_consumer()
     c.subscribe(topics)
-    atexit.register(close_consumer(c))
+    atexit.register(c.close)
     while True:
         msg = c.poll(timeout=1.0)
         if msg is None:
