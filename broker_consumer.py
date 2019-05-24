@@ -8,12 +8,17 @@ from app.message_broker.utils import get_message_broker_topic, get_message_broke
 
 from app.telegram.telegram_bot import TelegramBot
 
+
 if __name__ == '__main__':
 
     topics = [get_message_broker_topic()]
     c = get_message_broker_consumer()
     c.subscribe(topics)
-    atexit.register(c.close())
+
+    def close_consumer(consumer):
+        consumer.close()
+
+    atexit.register(close_consumer(c))
     while True:
         msg = c.poll(timeout=1.0)
         if msg is None:
