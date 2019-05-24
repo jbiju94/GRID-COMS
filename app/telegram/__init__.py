@@ -28,8 +28,12 @@ def set_webhook():
 @telegram.route('/notify/message', methods=['POST'])
 def notify_new_message():
     message = parse_message(request.get_json())
+
+    """
+    # Converting to Message Broker (Async)
     bot = TelegramBot(bot_token=os.environ['TELEGRAM_API'])
     bot.send_message(message['chat_id'], message['message'])
+    """
 
     # Push is to Queue
     producer = get_message_broker_producer()
