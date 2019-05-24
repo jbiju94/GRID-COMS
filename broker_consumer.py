@@ -10,7 +10,7 @@ from app.telegram.telegram_bot import TelegramBot
 
 if __name__ == '__main__':
 
-    topics = get_message_broker_topic()
+    topics = [get_message_broker_topic()]
     c = get_message_broker_consumer()
     c.subscribe(topics)
     atexit.register(c.close())
