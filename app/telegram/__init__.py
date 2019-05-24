@@ -3,7 +3,7 @@ import os
 import json
 from app.telegram.telegram_bot import TelegramBot
 from app.telegram.utils import parse_message
-from app.message_broker import get_message_broker_producer, get_message_broker_topic
+from app.message_broker.utils import get_message_broker_producer, get_message_broker_topic
 
 telegram = Blueprint('telegram', __name__, template_folder='templates', url_prefix='/telegram/v1')
 
